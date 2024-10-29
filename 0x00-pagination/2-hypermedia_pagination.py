@@ -49,15 +49,15 @@ class Server:
         we are here
         """
         dataset = self.dataset()
-        data = self.get_data(page, page_size)
-        total = len(dataset) // page_size
-        prev_p = None if page == 0 else page - 1
+        data = self.get_page(page, page_size)
+        total = math.ceil(len(dataset) / page_size)
+        prev_p = None if page == 1 else page - 1
         next_p = None if page > total else page + 1
-        return dict{
-                    'page_size': len(data),
-                    'page': page,
-                    'data': data,
-                    'next_page': next_p,
-                    'prev_page': prev_p,
-                    'total_pages': total
-                   }
+        return {
+                'page_size': len(data),
+                'page': page,
+                'data': data,
+                'next_page': next_p,
+                'prev_page': prev_p,
+                'total_pages': total
+                }
