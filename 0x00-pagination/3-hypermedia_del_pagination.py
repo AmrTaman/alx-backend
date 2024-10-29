@@ -45,13 +45,15 @@ class Server:
         iam here
         """
         indexed = self.indexed_dataset()
-        assert index < len(indexed)
+        assert 0 <= index < len(indexed)
         data = []
         nxt_idx = index
         while len(data) < page_size:
             if indexed.get(nxt_idx):
                 data.append(indexed[nxt_idx])
             nxt_idx += 1
+            if next_index >= len(indexed):
+                break
         return {
                 'index': index,
                 'data': data,
