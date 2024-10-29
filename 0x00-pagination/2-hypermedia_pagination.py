@@ -4,7 +4,7 @@ this is module
 """
 import csv
 import math
-from typing import List, Tuple
+from typing import List, Tuple, Dict, Any
 
 
 class Server:
@@ -43,3 +43,21 @@ class Server:
         if pag_range[1] > len(dataset):
             return []
         return dataset[pag_range[0]: pag_range[1]]
+
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
+        """
+        we are here
+        """
+        dataset = self.dataset()
+        data = self.get_data(page, page_size)
+        total = len(dataset) // page_size
+        prev_p = None if page == 0 else page - 1
+        next_p = None if page > total else page + 1
+        return dict{
+                    'page_size': len(data),
+                    'page': page,
+                    'data': data,
+                    'next_page': next_p,
+                    'prev_page': prev_p,
+                    'total_pages': total
+                   }
