@@ -45,7 +45,7 @@ class Server:
         iam here
         """
         indexed = self.indexed_dataset()
-        assert index <= len(indexed)
+        assert index < len(indexed)
         data = []
         nxt_idx = index
         for idx in range(index, index + page_size):
