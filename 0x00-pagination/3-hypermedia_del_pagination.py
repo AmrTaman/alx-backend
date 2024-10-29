@@ -52,7 +52,7 @@ class Server:
             if indexed.get(nxt_idx):
                 data.append(indexed[nxt_idx])
             nxt_idx += 1
-            if next_index >= len(indexed):
+            if nxt_idx >= len(indexed):
                 break
         return {
                 'index': index,
