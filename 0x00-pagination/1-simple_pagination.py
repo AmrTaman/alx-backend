@@ -26,15 +26,20 @@ class Server:
 
         return self.__dataset
 
-    def index_range(page: int, page_size: int) -> Tuple[int, int]:
-    """
-    this is method
-    """
+    def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
+        """
+        this is method
+        """
         return ((page - 1) * page_size, page * page_size)
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
         iam here
         """
+        assert isinstance(page, int) and isinstance(page_size, int)
         assert page > 0 and page_size > 0
-        pag_range = 
+        pag_range = self.index_range(page, page_size)
+        dataset = self.dataset()
+        if pag_range[1] > len(dataset):
+            return []
+        return dataset[pag_range[0]: pag_range[1]]
