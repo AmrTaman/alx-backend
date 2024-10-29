@@ -43,4 +43,17 @@ class Server:
         """
         iam here
         """
-    
+        indexed = self.indexed_dataset()
+        assert indexed.get(index)
+        data = []
+        nxt_idx = index
+        for idx in range(index, index + page_size):
+            if indexed.get(idx):
+                data.append(indexed[idx])
+                nxt_idx = idx + 1
+        return {
+                'index': index,
+                'next_index': nxt_idx,
+                'page_size': len(data),
+                'data': data
+                }
