@@ -34,4 +34,8 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            pass
+        """
+        iam here
+        """
+        assert page > 0 and page_size > 0
+        pag_range = 
