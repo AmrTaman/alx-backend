@@ -48,10 +48,10 @@ class Server:
         assert index < len(indexed)
         data = []
         nxt_idx = index
-        for idx in range(index, index + page_size):
-            if indexed.get(idx):
-                data.append(indexed[idx])
-                nxt_idx = idx + 1
+        while len(data) < page_size:
+            if indexed.get(nxt_idx):
+                data.append(indexed[nxt_idx])
+            nxt_idx += 1
         return {
                 'index': index,
                 'data': data,
