@@ -58,5 +58,5 @@ class Server:
                 'index': index,
                 'data': data,
                 'page_size': len(data),
-                'next_index': nxt_idx
+                'next_index': nxt_idx if len(data) == page_size else None
                 }
